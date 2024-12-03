@@ -11,31 +11,39 @@ class HomePage extends StatelessWidget {
         title: Text(
           'Breakfast',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800
           )
         ),
         centerTitle: true,
-        leading: Container(
-          margin: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          child: SvgPicture.asset(
-            'assets/icons/arrow_back.svg',
-            height: 20,
-            width: 20,
-          )
-        ),
-        actions: [
-          Container(
+        leading: GestureDetector(
+          onTap: () => print("button back"),
+          child: Container(
             margin: EdgeInsets.all(10),
             alignment: Alignment.center,
             child: SvgPicture.asset(
-              'assets/icons/dots.svg',
+              'assets/icons/arrow_back.svg',
               height: 20,
               width: 20,
             )
+          ),
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () => print("dots"),
+            child: Container(
+              margin: EdgeInsets.all(10),
+              alignment: Alignment.center,
+              child: SvgPicture.asset(
+                'assets/icons/dots.svg',
+                height: 20,
+                width: 20,
+              )
+            ),
           )
         ],
       )
+
+      
     );
   }
 }
