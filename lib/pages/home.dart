@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_todo_list_app/models/diet_model.dart';
 import 'package:flutter_todo_list_app/providers/diet_provider.dart';
 import 'package:flutter_todo_list_app/widgets/app_bar.dart';
 import 'package:flutter_todo_list_app/models/food_category.dart';
@@ -24,18 +25,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    final dietProvider = Provider.of<DietProvider>(context);
+    final diets = Provider.of<DietProvider>(context).diets;
     
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(), // Use the new widget
-      body: Column(
-        
-        children: [
-          textField(),
-          foodCategory(),
-          dietCategory(dietProvider),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            textField(),
+            foodCategory(),
+            dietCategory(diets)
+          ],
+        ),
       ),
     );
   }
@@ -149,13 +151,62 @@ Column foodCategory() {
   );
 }
 
-Column dietCategory(DietProvider dietProvider) {
+Column dietCategory(List<DietModel> diets) {
+
   return Column(
     children: [
       HomePageText(displayText: "Recommendation for Diet"),
-      Container(
-        
+      SizedBox(
+        height: 250, 
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          itemBuilder: (context, index) {
+            return Container(
+              width: 200,
+              decoration: BoxDecoration(
+                color: diets[index].boxColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    Text(
+                      diets[index].name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15, bottom: 15),
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: SvgPicture.asset(diets[index].iconPath),
+                      ),
+                    ),
+                    Text(
+                      "${diets[index].calories} kJ | ${diets[index].difficulty.description} | ${diets[index].minutes} min",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: Colors.black.withOpacity(0.5)
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(width: 25,),
+          itemCount: diets.length,
+        ),
       )
     ],
   );
-  }
+}
