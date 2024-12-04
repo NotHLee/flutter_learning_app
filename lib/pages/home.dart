@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_todo_list_app/providers/diet_provider.dart';
 import 'package:flutter_todo_list_app/widgets/app_bar.dart';
 import 'package:flutter_todo_list_app/models/food_category.dart';
+import 'package:flutter_todo_list_app/widgets/home_page_text.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<DietProvider>(context, listen: false).fetchDiets();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    List<FoodCategory> values = FoodCategory.values;
-    print(values);
+    final dietProvider = Provider.of<DietProvider>(context);
     
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(), // Use the new widget
       body: Column(
+        
         children: [
           textField(),
-          foodCategory()
+          foodCategory(),
+          dietCategory(dietProvider),
         ],
-      )
+      ),
     );
   }
 }
@@ -81,32 +97,65 @@ Container textField() {
   );
 }
 
-Column foodCategory(){
+Column foodCategory() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Padding(
-        padding: EdgeInsets.only(left: 20, top: 30),
-        child: Text(
-          'Category',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.bold
-          ),
-        ),
-      ),
-      SizedBox(height: 15,),
+      HomePageText(displayText: "Category"),
       Container(
-        height: 150,
-        color: Colors.green,
-        child: ListView.builder(
+        height: 120,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemCount: FoodCategory.values.length,
+          padding: EdgeInsets.only(left: 20, right: 20),
+          separatorBuilder: (context, index) => SizedBox(width: 25,),
           itemBuilder: (context, index) {
-            return Container();
+            return Container(
+              width: 100,
+              decoration: BoxDecoration(
+                color: FoodCategory.values[index].boxColor.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center, 
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(FoodCategory.values[index].iconPath),
+                    ),
+                  ),
+                  Text(
+                    FoodCategory.values[index].name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontSize: 14,
+                    ),
+                  )
+                ],
+              ),
+            );
           },
-        ) 
-      )
+        ),
+      ), 
     ],
-
   );
 }
+
+Column dietCategory(DietProvider dietProvider) {
+  return Column(
+    children: [
+      HomePageText(displayText: "Recommendation for Diet"),
+      Container(
+        
+      )
+    ],
+  );
+  }
