@@ -152,7 +152,6 @@ Column foodCategory() {
 }
 
 Column dietCategory(List<DietModel> diets) {
-
   return Column(
     children: [
       HomePageText(displayText: "Recommendation for Diet"),

@@ -3,25 +3,25 @@ import 'category_model.dart';
 
 enum FoodCategory implements CategoryModel {
   salad(
-    name: 'Salad',
+    name: 'Greek',
     iconPath: 'assets/icons/salad.svg',
     boxColor: Colors.green,
   ),
 
   sausage(
-    name: 'Sausage',
+    name: 'German',
     iconPath: 'assets/icons/sausage.svg',
     boxColor: Colors.orange,
   ),
 
   noodles(
-    name: 'Noodles',
+    name: 'Japanese',
     iconPath: 'assets/icons/noodle.svg',
     boxColor: Colors.red,
   ),
 
   rice(
-    name: 'Rice',
+    name: 'Chinese',
     iconPath: 'assets/icons/rice.svg',
     boxColor: Colors.yellow,
   );
