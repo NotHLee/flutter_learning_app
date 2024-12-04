@@ -9,21 +9,37 @@ class DietProvider with ChangeNotifier {
   void fetchDiets() {
     _diets = [
       DietModel(
-        foodName: 'Salad',
+        name: 'Yogurt',
+        iconPath: 'assets/icons/yogurt.svg',
+        boxColor: Colors.blue,
         difficulty: Difficulty.easy,
         minutes: 10,
         calories: 150,
       ),
       DietModel(
-        foodName: 'Steak',
+        name: 'Cereal',
+        iconPath: 'assets/icons/cereal.svg',
+        boxColor: Colors.orange,
+        difficulty: Difficulty.easy,
+        minutes: 5,
+        calories: 200,
+      ),
+      DietModel(
+        name: 'Eggs',
+        iconPath: 'assets/icons/eggs.svg',
+        boxColor: Colors.yellow,
+        difficulty: Difficulty.medium,
+        minutes: 15,
+        calories: 250,
+      ),
+      DietModel(
+        name: 'Pancakes',
+        iconPath: 'assets/icons/pancake.svg',
+        boxColor: Colors.brown,
         difficulty: Difficulty.hard,
-        minutes: 30,
-        calories: 500,
+        minutes: 20,
+        calories: 350,
       ),
     ];
-  }
-
-  List<Map<String, String>> getDietsAsString() {
-    return _diets.map((diet) => diet.toStringMap()).toList();
   }
  }

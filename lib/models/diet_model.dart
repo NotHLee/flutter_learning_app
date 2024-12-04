@@ -1,47 +1,38 @@
+import 'package:flutter_todo_list_app/models/category_model.dart';
+
 enum Difficulty {
   easy,
   medium,
   hard
 }
 
-class DietModel {
+extension DifficultyExtension on Difficulty {
+  String get description {
+    switch (this) {
+      case Difficulty.easy:
+        return "Easy";
+      case Difficulty.medium:
+        return "Medium";
+      case Difficulty.hard:
+        return "Hard";
+      default:
+        return "Invalid";
+    }
+  }
+}
 
-  String foodName;
+class DietModel extends CategoryModel {
   Difficulty difficulty;
   int minutes;
   int calories;
 
   DietModel({
-    required this.foodName,
+    required super.name,
+    required super.iconPath,
+    required super.boxColor,
     required this.difficulty,
     required this.minutes,
-    required this.calories
+    required this.calories,
   });
 
-  Map<String, String> toStringMap() {
-
-    String difficultyString;
-
-    switch (difficulty) {
-      case Difficulty.easy:
-        difficultyString = "Easy";
-        break;
-      case Difficulty.medium:
-        difficultyString = "Medium";
-        break;
-      case Difficulty.hard:
-        difficultyString = "Hard";
-        break;
-      default:
-        difficultyString = "Invalid";
-    }
-
-    return {
-      'foodName': foodName,
-      'difficulty': difficultyString,
-      'minutes': minutes.toString(),
-      'calories': calories.toString()
-    };
-  }
 }
-
