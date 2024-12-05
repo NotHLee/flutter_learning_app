@@ -82,6 +82,7 @@ Container textField() {
                   thickness: 0.1,
                   endIndent: 10,
                   indent: 10,
+                  
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15),
@@ -214,74 +215,72 @@ Column dietCategory(DietProvider dietProvider) {
   );
 }
 
-Column popularCategory(DietProvider dietProvider) {
+Column popularCategory(DietProvider dietProvider) { 
 
   final popularDiets = dietProvider.popularDiets;
 
   return Column(
     children: [
       HomePageText(displayText: "Popular"),
-        Container(
-          color: Colors.orange.withOpacity(0.1),
-          child: ListView.separated(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  color: popularDiets[index].boxColor.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(15)
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(10), 
-                      child: SizedBox(
-                        height: 75,
-                        width: 75,
-                        child: SvgPicture.asset(popularDiets[index].iconPath)
-                      )
-                    ),
-                    VerticalDivider(
-                      thickness: 4,
-                      indent: 10,
-                      endIndent: 10,
-                      color: Colors.black,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            popularDiets[index].name,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20
-                            ),
-                          ),
-                          Text(
-                            "${popularDiets[index].calories} kJ | ${popularDiets[index].difficulty.description} | ${popularDiets[index].minutes} min",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                                color: Colors.black.withOpacity(0.5)
-                              ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )
+      ListView.separated(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            height: 100,
+            decoration: BoxDecoration(
+              color: popularDiets[index].boxColor.withOpacity(0.4),
+              borderRadius: BorderRadius.circular(15)
             ),
-            separatorBuilder: (context, index) => SizedBox(height: 15,),
-            itemCount: popularDiets.length
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10), 
+                  child: SizedBox(
+                    height: 75,
+                    width: 75,
+                    child: SvgPicture.asset(popularDiets[index].iconPath)
+                  )
+                ),
+                VerticalDivider(
+                  thickness: 4,
+                  indent: 10,
+                  endIndent: 10,
+                  color: Colors.black,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        popularDiets[index].name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20
+                        ),
+                      ),
+                      Text(
+                        "${popularDiets[index].calories} kJ | ${popularDiets[index].difficulty.description} | ${popularDiets[index].minutes} min",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.5)
+                          ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           )
         ),
-      ],
-    );
-  }
+        separatorBuilder: (context, index) => SizedBox(height: 15,),
+        itemCount: popularDiets.length
+      ),
+      SizedBox(height: 15,),
+    ],
+  );
+}
