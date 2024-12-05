@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_list_app/pages/navigation.dart';
 import 'package:flutter_todo_list_app/providers/diet_provider.dart';
 import 'package:provider/provider.dart';
 import './pages/home.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage()
+      home: NavigationPage()
     );
   }
 }
