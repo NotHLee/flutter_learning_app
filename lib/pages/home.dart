@@ -65,11 +65,9 @@ Container textField() {
         hintStyle: TextStyle(
           color: Colors.grey,
         ),
-        prefixIcon: GestureDetector(
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: SvgPicture.asset('assets/icons/search.svg'),
-          ),
+        prefixIcon: TextButton(
+          onPressed: () => print("clicked"),
+          child: SvgPicture.asset('assets/icons/search.svg'),
         ),
         suffixIcon: SizedBox(
           width: 100,
@@ -84,8 +82,8 @@ Container textField() {
                   indent: 10,
                   
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15),
+                TextButton(
+                  onPressed: () => print("clicked"),
                   child: SvgPicture.asset('assets/icons/filter.svg'),
                 ),
               ],
