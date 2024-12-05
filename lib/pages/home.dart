@@ -198,6 +198,35 @@ Column dietCategory(DietProvider dietProvider) {
                         fontSize: 14,
                         color: Colors.black.withOpacity(0.5)
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: () => print("click"),
+                        child: Container(
+                          height: 40,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                              colors: [Color(0xff0052d4), Color(0xff4364f7), Color(0xff6fb1fc)],
+                              stops: [0, 0.5, 1],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ) 
+                          ),
+                          child: Center(
+                            child: Text(
+                              "View",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,  
+                                fontSize: 16
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     )
                   ],
                 ),
