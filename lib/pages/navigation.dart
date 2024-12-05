@@ -27,7 +27,7 @@ class NavigationPage extends StatelessWidget {
                 elevation: 10,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
-                  onTap: () => print("hi"),
+                  onTap: () => Navigator.pushNamed(context, '/homepage'),
                   child: Center(
                     child: Column(
                       children: [

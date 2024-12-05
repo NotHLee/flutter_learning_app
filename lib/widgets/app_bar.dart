@@ -15,15 +15,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       centerTitle: true,
-      leading: GestureDetector(
-        onTap: () => print("button back"),
+      leading: TextButton(
+        onPressed: () => Navigator.pop(context),
         child: Container(
-          margin: EdgeInsets.all(10),
           alignment: Alignment.center,
           child: SvgPicture.asset(
             'assets/icons/arrow_back.svg',
-            height: 20,
-            width: 20,
           ),
         ),
       ),
