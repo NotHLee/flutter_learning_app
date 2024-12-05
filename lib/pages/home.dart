@@ -80,7 +80,6 @@ Container textField() {
                   thickness: 0.1,
                   endIndent: 10,
                   indent: 10,
-                  
                 ),
                 TextButton(
                   onPressed: () => print("clicked"),
@@ -228,47 +227,68 @@ Column popularCategory(DietProvider dietProvider) {
           child: Container(
             height: 100,
             decoration: BoxDecoration(
-              color: popularDiets[index].boxColor.withOpacity(0.4),
-              borderRadius: BorderRadius.circular(15)
-            ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow:[
+              BoxShadow(
+                color: Color.fromRGBO(149, 157, 165, 0.2),
+                blurRadius: 24,
+                spreadRadius: 0,
+                offset: Offset(0,8,),
+              ),
+            ]
+          ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: EdgeInsets.all(10), 
-                  child: SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: SvgPicture.asset(popularDiets[index].iconPath)
-                  )
-                ),
-                VerticalDivider(
-                  thickness: 4,
-                  indent: 10,
-                  endIndent: 10,
-                  color: Colors.black,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        popularDiets[index].name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20
-                        ),
-                      ),
-                      Text(
-                        "${popularDiets[index].calories} kJ | ${popularDiets[index].difficulty.description} | ${popularDiets[index].minutes} min",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Colors.black.withOpacity(0.5)
-                          ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(10), 
+                      child: SizedBox(
+                        height: 75,
+                        width: 75,
+                        child: SvgPicture.asset(popularDiets[index].iconPath)
                       )
-                    ],
+                    ),
+                    VerticalDivider(
+                      thickness: 4,
+                      indent: 10,
+                      endIndent: 10,
+                      color: Colors.black,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            popularDiets[index].name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20
+                            ),
+                          ),
+                          Text(
+                            "${popularDiets[index].calories} kJ | ${popularDiets[index].difficulty.description} | ${popularDiets[index].minutes} min",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                color: Colors.black.withOpacity(0.5)
+                              ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: TextButton(
+                    onPressed: () => print("clicked"),
+                    child: SvgPicture.asset('assets/icons/arrow_circle_right.svg')
                   ),
                 )
               ],
