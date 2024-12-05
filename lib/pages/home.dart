@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    final diets = Provider.of<DietProvider>(context).diets;
+    final dietProvider = Provider.of<DietProvider>(context);
     
     return Scaffold(
       backgroundColor: Colors.white,
@@ -35,7 +35,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             textField(),
             foodCategory(),
-            dietCategory(diets)
+            dietCategory(dietProvider),
+            popularCategory(dietProvider),
           ],
         ),
       ),
@@ -151,7 +152,10 @@ Column foodCategory() {
   );
 }
 
-Column dietCategory(List<DietModel> diets) {
+Column dietCategory(DietProvider dietProvider) {
+
+  final diets = dietProvider.diets;
+
   return Column(
     children: [
       HomePageText(displayText: "Recommendation for Diet"),
@@ -209,3 +213,75 @@ Column dietCategory(List<DietModel> diets) {
     ],
   );
 }
+
+Column popularCategory(DietProvider dietProvider) {
+
+  final popularDiets = dietProvider.popularDiets;
+
+  return Column(
+    children: [
+      HomePageText(displayText: "Popular"),
+        Container(
+          color: Colors.orange.withOpacity(0.1),
+          child: ListView.separated(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) => Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  color: popularDiets[index].boxColor.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(10), 
+                      child: SizedBox(
+                        height: 75,
+                        width: 75,
+                        child: SvgPicture.asset(popularDiets[index].iconPath)
+                      )
+                    ),
+                    VerticalDivider(
+                      thickness: 4,
+                      indent: 10,
+                      endIndent: 10,
+                      color: Colors.black,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            popularDiets[index].name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20
+                            ),
+                          ),
+                          Text(
+                            "${popularDiets[index].calories} kJ | ${popularDiets[index].difficulty.description} | ${popularDiets[index].minutes} min",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                color: Colors.black.withOpacity(0.5)
+                              ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ),
+            separatorBuilder: (context, index) => SizedBox(height: 15,),
+            itemCount: popularDiets.length
+          )
+        ),
+      ],
+    );
+  }

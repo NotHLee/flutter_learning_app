@@ -25,6 +25,7 @@ class DietModel extends CategoryModel {
   Difficulty difficulty;
   int minutes;
   int calories;
+  bool isPopular;
 
   DietModel({
     required super.name,
@@ -33,6 +34,7 @@ class DietModel extends CategoryModel {
     required this.difficulty,
     required this.minutes,
     required this.calories,
+    this.isPopular = false,
   });
 
 }
