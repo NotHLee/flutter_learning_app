@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_list_app/pages/navigation.dart';
+import 'package:flutter_todo_list_app/pages/weather.dart';
 import 'package:flutter_todo_list_app/providers/diet_provider.dart';
 import 'package:flutter_todo_list_app/providers/navigation_provider.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/navigation': (context) => NavigationPage(),
         '/homepage': (context) => HomePage(),
+        '/weather': (context) => WeatherPage(),
       },
     );
   }

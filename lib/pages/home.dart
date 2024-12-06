@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(), // Use the new widget
+      appBar: CustomAppBar(title: "Breakfast",),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -4,6 +4,11 @@
             "name": "Breakfast App UI",
             "iconPath": "assets/icons/salad.svg",
             "navigationRoute": "/homepage"
+        },
+        {
+            "name": "Weather App UI",
+            "iconPath": "assets/icons/weather.svg",
+            "navigationRoute" : "/weather"
         }
     ]   
 }

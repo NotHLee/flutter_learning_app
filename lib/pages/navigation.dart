@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_todo_list_app/models/navigation_model.dart';
 import 'package:flutter_todo_list_app/providers/navigation_provider.dart';
-import 'package:flutter_todo_list_app/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -44,7 +43,6 @@ class _NavigationPageState extends State<NavigationPage> {
             return GridView.count (
               crossAxisCount: 2,
               children: routes
-              .where((route) => route.iconPath != null && route.iconPath!.isNotEmpty)
               .map((route) {
                 return NavigationGridTile(
                   iconPath: route.iconPath!,
@@ -88,7 +86,7 @@ class NavigationGridTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 15, bottom: 15),
                     child: Text(
-                      "Breakfast App UI",
+                      name,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18  
@@ -98,7 +96,7 @@ class NavigationGridTile extends StatelessWidget {
                   Expanded(child: 
                     Padding(
                       padding: EdgeInsets.only(bottom: 15, left: 15, right: 15),
-                      child: SvgPicture.asset('assets/icons/salad.svg'),
+                      child: SvgPicture.asset(iconPath),
                       )
                   )
                 ],
