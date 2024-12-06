@@ -1,0 +1,12 @@
+[
+    {
+    "name": "Home",
+    "iconPath": "assets/icons/home.png",
+    "navigationRoute": "/home"
+    },
+    {
+    "name": "Profile",
+    "iconPath": "assets/icons/profile.png",
+    "navigationRoute": "/profile"
+    }
+]
