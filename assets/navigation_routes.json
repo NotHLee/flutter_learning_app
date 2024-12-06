@@ -1,12 +1,9 @@
-[
-    {
-    "name": "Home",
-    "iconPath": "assets/icons/home.png",
-    "navigationRoute": "/home"
-    },
-    {
-    "name": "Profile",
-    "iconPath": "assets/icons/profile.png",
-    "navigationRoute": "/profile"
-    }
-]
+{
+    "items": [
+        {
+            "name": "Breakfast App UI",
+            "iconPath": "assets/icons/salad.svg",
+            "navigationRoute": "/homepage"
+        }
+    ]   
+}
