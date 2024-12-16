@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'package:flutter_todo_list_app/models/weather_model.dart';
 
 class WeatherDataTransformer {
@@ -33,4 +34,9 @@ class WeatherDataTransformer {
 
     return locationMap;
   }
+
+  static List<T> toSeries<T> (List<WeatherModel> weatherModels, T Function(WeatherModel) attributeExtractor) {
+    return weatherModels.map(attributeExtractor).toList();
+  }
+
 }

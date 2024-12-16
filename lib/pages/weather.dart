@@ -35,7 +35,6 @@ class _WeatherPageState extends State<WeatherPage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
-
           return Consumer<WeatherProvider>(
             builder: (context, weatherProvider, child) {
               if (weatherProvider.isLoading) {
