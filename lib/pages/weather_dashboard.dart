@@ -3,6 +3,7 @@ import 'package:flutter_todo_list_app/providers/weather_provider.dart';
 import 'package:flutter_todo_list_app/widgets/app_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class WeatherDashboard extends StatelessWidget {
 
@@ -16,10 +17,12 @@ class WeatherDashboard extends StatelessWidget {
 
     final weatherProvider = Provider.of<WeatherProvider>(context);
     final weatherData = weatherProvider.weatherData?[locationId];
+    PageController pageController = PageController();
 
     return Scaffold(
       appBar: CustomAppBar(title: locationName),
       body: PageView.builder(
+        controller: pageController,
         itemCount: weatherData!.reports.length,
         itemBuilder: (context, index) {
           final report = weatherData.reports.reversed.toList()[index];
@@ -63,7 +66,16 @@ class WeatherDashboard extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: SmoothPageIndicator(
+                  controller: pageController, 
+                  count: weatherData.reports.length,
+                  ),
+              ),
+            )
             ],
           );
         },
