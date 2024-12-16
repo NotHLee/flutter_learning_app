@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_list_app/models/weather_model.dart';
 import 'package:flutter_todo_list_app/providers/weather_provider.dart';
 import 'package:flutter_todo_list_app/widgets/app_bar.dart';
+import 'package:flutter_todo_list_app/widgets/weather_item.dart';
 import 'package:provider/provider.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -50,6 +51,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 return const Center(child: Text('No weather data available'));
               }
 
+              // sort alphabetically
               final weatherKeys = weatherData.keys.toList();
               weatherKeys.sort((a, b) {
                 final locationA = weatherData[a]?.locationName ?? '';
@@ -57,15 +59,12 @@ class _WeatherPageState extends State<WeatherPage> {
                 return locationA.compareTo(locationB);
               });
 
+              // display ListView
               return ListView.builder(
                 itemCount: weatherData.length,
                 itemBuilder: (context, index) {
                   final entry = weatherData[weatherKeys[index]];
-                  final locationName = entry?.locationName;
-
-                  return ListTile(
-                    title: Text('$locationName'),
-                  );
+                  return WeatherItem(locationId: entry!.locationId, locationName: entry.locationName);
                 },
               );
             }
