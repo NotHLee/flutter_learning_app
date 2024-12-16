@@ -16,7 +16,6 @@ class WeatherService {
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
-        print(data.cast<Map<String,dynamic>>());
         return data.cast<Map<String, dynamic>>();
       } else {
         throw Exception('Failed to load weather data: ${response.statusCode}');

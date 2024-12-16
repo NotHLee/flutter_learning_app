@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_list_app/models/weather_model.dart';
 import 'package:flutter_todo_list_app/providers/weather_provider.dart';
@@ -30,7 +32,7 @@ class _WeatherPageState extends State<WeatherPage> {
         future: _weatherFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
 
           return Consumer<WeatherProvider>(
@@ -48,13 +50,21 @@ class _WeatherPageState extends State<WeatherPage> {
                 return const Center(child: Text('No weather data available'));
               }
 
+              final weatherKeys = weatherData.keys.toList();
+              weatherKeys.sort((a, b) {
+                final locationA = weatherData[a]?.locationName ?? '';
+                final locationB = weatherData[b]?.locationName ?? '';
+                return locationA.compareTo(locationB);
+              });
+
               return ListView.builder(
                 itemCount: weatherData.length,
                 itemBuilder: (context, index) {
-                  final weather = weatherData[index];
+                  final entry = weatherData[weatherKeys[index]];
+                  final locationName = entry?.locationName;
+
                   return ListTile(
-                    title: Text(weather.locationName ?? 'Unknown'),
-                    subtitle: Text('${weather.maxTemp}°C'),
+                    title: Text('$locationName'),
                   );
                 },
               );

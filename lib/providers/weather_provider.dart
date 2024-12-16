@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_list_app/models/weather_model.dart';
 import 'package:flutter_todo_list_app/services/weather_service.dart';
+import 'package:flutter_todo_list_app/utils/weather_data_transformer.dart';
 
 class WeatherProvider with ChangeNotifier {
   final WeatherService _weatherService = WeatherService();
-  List<WeatherModel>? _weatherData;
+  Map<String, Location>? _weatherData;
   bool _isLoading = false;
   String? _error;
 
-  List<WeatherModel>? get weatherData => _weatherData;
+  Map<String, Location>? get weatherData => _weatherData;
   bool get isLoading => _isLoading;
   String? get error => _error;
 
   Future<void> fetchWeather() async {
     try {
       final weatherData = await _weatherService.fetchWeather();
-      _weatherData = weatherData.map((data) => WeatherModel.fromJson(data)).toList();
+      _weatherData = WeatherDataTransformer.transformWeatherData(weatherData);
       _error = null;
     } catch (e) {
       _error = e.toString();
@@ -24,7 +25,7 @@ class WeatherProvider with ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
-  } 
+  }
 
   void reset() {
     _weatherData = null;
