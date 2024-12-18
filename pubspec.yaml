@@ -34,6 +34,8 @@ dependencies:
   fl_chart: ^0.69.2
   intl: ^0.20.1
   smooth_page_indicator: ^1.2.0+3
+  firebase_core: ^3.8.1
+  firebase_messaging: ^15.1.6
 
 
   # The following adds the Cupertino Icons font to your application.

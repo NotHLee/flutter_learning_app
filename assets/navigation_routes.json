@@ -9,6 +9,11 @@
             "name": "Weather App UI",
             "iconPath": "assets/icons/weather.svg",
             "navigationRoute" : "/weather"
+        },
+        {
+            "name": "Messaging",
+            "iconPath": "assets/icons/message.svg",
+            "navigationRoute" : "/message"
         }
     ]   
 }

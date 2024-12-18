@@ -10,6 +10,9 @@
 .svn/
 migrate_working_dir/
 requirements.md
+firebase_options.dart
+google-services.json
+
 
 # IntelliJ related
 *.iml
