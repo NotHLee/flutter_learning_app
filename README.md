@@ -1,6 +1,6 @@
-# flutter_todo_list_app
+# flutter_learning_app
 
-A new Flutter project.
+A new Flutter project with miscellanous features for learning purposes
 
 ## Getting Started
 
